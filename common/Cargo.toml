@@ -1,0 +1,37 @@
+[package]
+name = "football-common"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+# Web框架（用于错误响应）
+actix-web.workspace = true
+
+# 序列化
+serde.workspace = true
+serde_json.workspace = true
+
+# 错误处理
+anyhow.workspace = true
+thiserror.workspace = true
+
+# 时间
+chrono.workspace = true
+
+# 异步
+async-trait.workspace = true
+tokio.workspace = true
+
+# 日志
+tracing.workspace = true
+log.workspace = true
+
+# 配置
+config.workspace = true
+dotenv.workspace = true
+
+# 数据库（用于错误转换）
+rbatis.workspace = true
+redis.workspace = true

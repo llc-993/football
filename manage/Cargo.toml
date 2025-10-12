@@ -1,0 +1,44 @@
+[package]
+name = "football-manage"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+# 内部依赖
+football-common.workspace = true
+football-orm.workspace = true
+
+# Web框架
+actix-web.workspace = true
+actix-rt.workspace = true
+actix-cors.workspace = true
+
+# 异步运行时
+tokio.workspace = true
+
+# 序列化
+serde.workspace = true
+serde_json.workspace = true
+
+# 日志
+tracing.workspace = true
+tracing-subscriber.workspace = true
+log.workspace = true
+env_logger.workspace = true
+
+# 配置
+config.workspace = true
+dotenv.workspace = true
+
+# 错误处理
+anyhow.workspace = true
+thiserror.workspace = true
+
+# 时间
+chrono.workspace = true
+
+# 异步
+async-trait.workspace = true
+futures.workspace = true
