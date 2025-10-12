@@ -14,10 +14,18 @@ use conf::i18n;
 async fn main() -> std::io::Result<()> {
 
 
-    // 加载配置（优先从配置文件加载，回退到环境变量）
-    let config = AppConfig::from_file("business/config")
-        .or_else(|_| AppConfig::from_env())
-        .expect("配置加载失败");
+    // 嵌入配置文件（编译时加载）
+    const DEFAULT_CONFIG: &str = include_str!("../config.toml");
+    const PROD_CONFIG: &str = include_str!("../config.production.toml");
+    
+    // 加载配置（优先从文件加载，回退到嵌入配置，最后回退到环境变量）
+    let config = AppConfig::from_file_or_embedded(
+        "business/config",
+        DEFAULT_CONFIG,
+        Some(PROD_CONFIG),
+    )
+    .or_else(|_| AppConfig::from_env())
+    .expect("配置加载失败");
     // log::info!("Business 配置加载成功: {:?}", config);
 
     // 初始化日志

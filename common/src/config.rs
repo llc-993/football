@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use config::{Config, ConfigError, Environment, File};
+use config::{Config, ConfigError, Environment, File, FileFormat};
 use std::env;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -48,6 +48,48 @@ impl AppConfig {
             .build()?;
 
         config.try_deserialize()
+    }
+
+    /// 从嵌入的配置内容加载（支持编译时嵌入）
+    pub fn from_embedded(default_config: &str, prod_config: Option<&str>) -> Result<Self, ConfigError> {
+        let run_mode = env::var("RUN_MODE").unwrap_or_else(|_| "development".into());
+
+        let mut builder = Config::builder()
+            // 加载嵌入的默认配置
+            .add_source(File::from_str(default_config, FileFormat::Toml));
+
+        // 如果是生产环境且提供了生产配置，加载生产配置
+        if run_mode == "production" {
+            if let Some(prod_cfg) = prod_config {
+                builder = builder.add_source(File::from_str(prod_cfg, FileFormat::Toml));
+            }
+        }
+
+        // 从环境变量加载配置（优先级最高）
+        let config = builder
+            .add_source(Environment::with_prefix("APP").separator("__"))
+            .build()?;
+
+        config.try_deserialize()
+    }
+
+    /// 智能加载配置：优先从文件加载，如果失败则从嵌入资源加载
+    pub fn from_file_or_embedded(
+        config_path: &str,
+        default_config: &str,
+        prod_config: Option<&str>,
+    ) -> Result<Self, ConfigError> {
+        // 优先从文件系统加载
+        match Self::from_file(config_path) {
+            Ok(config) => {
+                log::debug!("从文件系统加载配置: {}", config_path);
+                Ok(config)
+            }
+            Err(e) => {
+                log::info!("文件系统加载配置失败: {}，使用嵌入配置", e);
+                Self::from_embedded(default_config, prod_config)
+            }
+        }
     }
 
     /// 从环境变量加载配置

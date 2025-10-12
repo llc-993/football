@@ -4,7 +4,6 @@
 use fluent::{FluentBundle, FluentResource};
 use once_cell::sync::Lazy;
 use std::collections::HashMap;
-use std::fs;
 use std::sync::Arc;
 use std::cell::RefCell;
 use unic_langid::LanguageIdentifier;
@@ -112,17 +111,13 @@ pub mod keys {
 
 /// 加载 Fluent Resource（资源是线程安全的）
 fn load_resource(lang: Language) -> Arc<FluentResource> {
-    let locale_path = format!("business/locales/{}", lang.fluent_file());
-    
-    let ftl_string = match fs::read_to_string(&locale_path) {
-        Ok(content) => content,
-        Err(e) => {
-            log::warn!("加载语言文件失败 {}: {}，使用默认内容", locale_path, e);
-            get_default_ftl(lang)
-        }
+    // 使用 include_str! 在编译时嵌入文件内容
+    let ftl_string = match lang {
+        Language::ZhCN => include_str!("../../locales/zh-CN.ftl"),
+        Language::En => include_str!("../../locales/en-US.ftl"),
     };
     
-    let resource = FluentResource::try_new(ftl_string).unwrap_or_else(|e| {
+    let resource = FluentResource::try_new(ftl_string.to_string()).unwrap_or_else(|e| {
         log::error!("解析 Fluent 资源失败: {:?}", e);
         FluentResource::try_new(get_default_ftl(lang)).expect("Default FTL should be valid")
     });
