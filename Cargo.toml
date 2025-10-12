@@ -67,3 +67,9 @@ unic-langid = "0.9"
 football-common = { path = "./common" }
 football-orm = { path = "./orm" }
 
+# sa-token
+sa-token-core="0.1.2"
+sa-token-macro="0.1.2"
+sa-token-storage-redis = "0.1.2"
+sa-token-plugin-actix-web="0.1.2"
+sa-token-adapter="0.1.2"
