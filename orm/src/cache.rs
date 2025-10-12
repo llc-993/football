@@ -28,7 +28,7 @@ pub fn init_redis(config: &RedisConfig) -> AppResult<()> {
     };
     
     log::info!(
-        "✅ Redis连接初始化成功 - {}, 连接池大小: {}",
+        "Redis连接初始化成功 - {}, 连接池大小: {}",
         safe_url,
         config.pool_size
     );

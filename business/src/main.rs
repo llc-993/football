@@ -3,7 +3,7 @@ use actix_cors::Cors;
 use football_common::config::AppConfig;
 use football_orm::{db, cache};
 
-mod handlers;
+mod handle;
 mod routes;
 mod conf;
 
@@ -55,6 +55,13 @@ async fn main() -> std::io::Result<()> {
     // 注册全局 i18n 翻译器到 common 模块
     football_common::init_i18n_translator(i18n::translate);
 
+    // 初始化 Sa-Token
+    let sa_token = football_common::conf::init_sa_token(&redis_config)
+        .await
+        .expect("Sa-Token 初始化失败");
+    let sa_token = web::Data::new(sa_token);
+    log::info!("Sa-Token 初始化成功");
+
     let server_host = config.server.host.clone();
     let server_port = config.server.port;
     let bind_address = format!("{}:{}", server_host, server_port);
@@ -72,6 +79,7 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .app_data(i18n.clone()) // 注入 i18n 到应用状态
+            .app_data(sa_token.clone()) // 注入 Sa-Token 到应用状态
             .wrap(LanguageMiddleware) // 自动检测语言并注入请求
             .wrap(cors)
             .wrap(actix_web::middleware::Logger::default())

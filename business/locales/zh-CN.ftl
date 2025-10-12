@@ -47,3 +47,12 @@ items-count =
        *[other] {$count}个项目
     }
 
+# 钱包相关
+wallet-balance = 钱包余额
+wallet-recharge-success = 充值成功
+wallet-withdraw-success = 提现成功
+wallet-insufficient-balance = 余额不足
+wallet-frozen = 钱包已冻结
+wallet-active = 钱包正常
+wallet-transaction-history = 交易记录
+

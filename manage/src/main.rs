@@ -1,4 +1,4 @@
-use actix_web::{App, HttpServer};
+use actix_web::{web, App, HttpServer};
 use actix_cors::Cors;
 use football_common::config::AppConfig;
 use football_orm::{db, cache};
@@ -43,6 +43,13 @@ async fn main() -> std::io::Result<()> {
         log::error!("Redis连接测试失败: {}", e);
     }
 
+    // 初始化 Sa-Token
+    let sa_token = football_common::conf::init_sa_token(&redis_config)
+        .await
+        .expect("Sa-Token 初始化失败");
+    let sa_token = web::Data::new(sa_token);
+    log::info!("Sa-Token 初始化成功");
+
     let server_host = config.server.host.clone();
     let server_port = config.server.port;
     let bind_address = format!("{}:{}", server_host, server_port);
@@ -59,6 +66,7 @@ async fn main() -> std::io::Result<()> {
             .max_age(3600);
 
         App::new()
+            .app_data(sa_token.clone()) // 注入 Sa-Token 到应用状态
             .wrap(cors)
             .wrap(actix_web::middleware::Logger::default())
             .configure(routes::config)

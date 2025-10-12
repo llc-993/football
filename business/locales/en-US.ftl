@@ -47,3 +47,12 @@ items-count =
        *[other] {$count} items
     }
 
+# Wallet related
+wallet-balance = Wallet Balance
+wallet-recharge-success = Recharge Successful
+wallet-withdraw-success = Withdrawal Successful
+wallet-insufficient-balance = Insufficient Balance
+wallet-frozen = Wallet Frozen
+wallet-active = Wallet Active
+wallet-transaction-history = Transaction History
+
