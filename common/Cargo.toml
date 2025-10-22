@@ -42,3 +42,7 @@ sa-token-macro.workspace = true
 sa-token-storage-redis.workspace = true
 sa-token-plugin-actix-web.workspace = true
 sa-token-adapter.workspace = true
+
+# 工具
+uuid.workspace = true
+once_cell.workspace = true

@@ -105,6 +105,29 @@ pub mod keys {
     pub const OPERATION_SUCCESS: &str = "operation-success";
     pub const OPERATION_FAILED: &str = "operation-failed";
     
+    // 用户相关
+    pub const USER_REGISTER_SUCCESS: &str = "user-register-success";
+    pub const USER_LOGIN_SUCCESS: &str = "user-login-success";
+    pub const USER_PASSWORD_CHANGED: &str = "user-password-changed";
+    pub const USER_PASSWORD_RESET: &str = "user-password-reset";
+    pub const USER_DETAIL_SUCCESS: &str = "user-detail-success";
+    
+    // 用户错误
+    pub const EMAIL_ALREADY_EXISTS: &str = "email-already-exists";
+    pub const USERNAME_OR_PASSWORD_ERROR: &str = "username-or-password-error";
+    pub const ACCOUNT_FROZEN_OR_DISABLED: &str = "account-frozen-or-disabled";
+    pub const OLD_PASSWORD_ERROR: &str = "old-password-error";
+    pub const EMAIL_NOT_REGISTERED: &str = "email-not-registered";
+    pub const VERIFICATION_CODE_ERROR: &str = "verification-code-error";
+    
+    // 参数校验错误
+    pub const PASSWORD_REQUIRED: &str = "password-required";
+    pub const EMAIL_OR_PHONE_REQUIRED: &str = "email-or-phone-required";
+    
+    // 系统错误
+    pub const TOKEN_GENERATION_FAILED: &str = "token-generation-failed";
+    pub const UPDATE_LOGIN_TIME_FAILED: &str = "update-login-time-failed";
+    
     // 复数支持
     pub const ITEMS_COUNT: &str = "items-count";
 }

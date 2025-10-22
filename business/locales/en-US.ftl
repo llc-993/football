@@ -12,6 +12,30 @@ user-already-exists = User already exists
 user-found = Found {$count} users
 user-welcome = Welcome, {$username}!
 
+# User operation success
+user-register-success = Registration successful
+user-login-success = Login successful
+user-password-changed = Password changed successfully
+user-password-reset = Password reset successfully
+user-detail-success = User details retrieved successfully
+
+# User errors
+user-already-exists = Username already exists
+email-already-exists = Email already registered
+username-or-password-error = Invalid username or password
+account-frozen-or-disabled = Account frozen or disabled
+old-password-error = Incorrect old password
+email-not-registered = Email not registered
+verification-code-error = Invalid or expired verification code
+
+# Validation errors
+password-required = Password is required
+email-or-phone-required = Email or phone number is required
+
+# System errors
+token-generation-failed = Token generation failed
+update-login-time-failed = Failed to update login time
+
 # Authentication related
 auth-unauthorized = Unauthorized
 auth-forbidden = Forbidden

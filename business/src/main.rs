@@ -6,13 +6,13 @@ use football_orm::{db, cache};
 mod handle;
 mod routes;
 mod conf;
+mod types;
 
 use conf::{I18nBundles, LanguageMiddleware};
 use conf::i18n;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-
 
     // 嵌入配置文件（编译时加载）
     const DEFAULT_CONFIG: &str = include_str!("../config.toml");

@@ -12,6 +12,30 @@ user-already-exists = 用户已存在
 user-found = 找到 {$count} 个用户
 user-welcome = 欢迎，{$username}！
 
+# 用户操作成功
+user-register-success = 注册成功
+user-login-success = 登录成功
+user-password-changed = 密码修改成功
+user-password-reset = 密码重置成功
+user-detail-success = 获取用户信息成功
+
+# 用户错误
+user-already-exists = 用户名已存在
+email-already-exists = 邮箱已被注册
+username-or-password-error = 用户名或密码错误
+account-frozen-or-disabled = 账号已被冻结或禁用
+old-password-error = 原密码错误
+email-not-registered = 邮箱未注册
+verification-code-error = 验证码错误或已过期
+
+# 参数校验错误
+password-required = 密码不能为空
+email-or-phone-required = 邮箱和手机号至少填写一个
+
+# 系统错误
+token-generation-failed = Token生成失败
+update-login-time-failed = 更新登录时间失败
+
 # 认证相关
 auth-unauthorized = 未授权访问
 auth-forbidden = 禁止访问

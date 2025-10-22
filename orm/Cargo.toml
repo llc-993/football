@@ -39,3 +39,9 @@ log.workspace = true
 
 # 工具
 once_cell.workspace = true
+
+# 精确数值计算
+rust_decimal.workspace = true
+
+# rbatis 序列化支持
+rbs.workspace = true

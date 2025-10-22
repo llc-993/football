@@ -10,6 +10,9 @@ license.workspace = true
 football-common.workspace = true
 football-orm.workspace = true
 
+# 数据库
+rbs.workspace = true
+
 # Web框架
 actix-web.workspace = true
 actix-rt.workspace = true

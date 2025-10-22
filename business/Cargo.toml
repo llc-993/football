@@ -46,6 +46,10 @@ futures.workspace = true
 # 工具
 once_cell.workspace = true
 
+# 数据库
+rbatis.workspace = true
+rbs.workspace = true
+
 # 国际化 (Fluent)
 fluent.workspace = true
 fluent-bundle.workspace = true

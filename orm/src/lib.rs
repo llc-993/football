@@ -1,7 +1,8 @@
-pub mod entities;
 pub mod repositories;
 pub mod db;
 pub mod cache;
+pub mod user;
+pub mod agent;
 
 // 重新导出 common 模块
 pub use football_common::{AppError, AppResult};
