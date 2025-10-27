@@ -1,0 +1,31 @@
+-- 创建用户等级配置表
+CREATE TABLE user_level_config (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    level_name VARCHAR(50) NOT NULL COMMENT '等级名称',
+    level_value INT NOT NULL COMMENT '等级值（数字越大等级越高）',
+    daily_withdraw_limit DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '每天提现额度',
+    single_withdraw_limit DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '单次提现限额',
+    withdraw_fee_rate DECIMAL(5,2) NOT NULL DEFAULT 0.00 COMMENT '提现手续费率（%）',
+    min_withdraw_amount DECIMAL(15,2) NOT NULL DEFAULT 100.00 COMMENT '最低提现金额',
+    max_withdraw_amount DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '最高提现金额',
+    deposit_fee_rate DECIMAL(5,2) NOT NULL DEFAULT 0.00 COMMENT '充值手续费率（%）',
+    min_deposit_amount DECIMAL(15,2) NOT NULL DEFAULT 10.00 COMMENT '最低充值金额',
+    max_deposit_amount DECIMAL(15,2) NOT NULL DEFAULT 100000.00 COMMENT '最高充值金额',
+    bet_limit DECIMAL(15,2) NOT NULL DEFAULT 10000.00 COMMENT '投注限额',
+    single_bet_limit DECIMAL(15,2) NOT NULL DEFAULT 1000.00 COMMENT '单次投注限额',
+    daily_bet_limit DECIMAL(15,2) NOT NULL DEFAULT 50000.00 COMMENT '每日投注限额',
+    commission_rate DECIMAL(5,2) NOT NULL DEFAULT 0.00 COMMENT '佣金比例（%）',
+    require_verification BOOLEAN NOT NULL DEFAULT TRUE COMMENT '是否需要实名认证',
+    require_phone_verification BOOLEAN NOT NULL DEFAULT TRUE COMMENT '是否需要手机验证',
+    require_email_verification BOOLEAN NOT NULL DEFAULT FALSE COMMENT '是否需要邮箱验证',
+    description TEXT NULL COMMENT '等级描述',
+    is_active BOOLEAN NOT NULL DEFAULT TRUE COMMENT '是否启用',
+    sort_order INT NOT NULL DEFAULT 0 COMMENT '排序权重（数字越大越靠前）',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    UNIQUE KEY uk_level_value (level_value),
+    INDEX idx_level_name (level_name),
+    INDEX idx_is_active (is_active),
+    INDEX idx_sort_order (sort_order)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户等级配置表';
