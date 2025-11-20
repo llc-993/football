@@ -1,0 +1,20 @@
+# 爬虫配置文件
+
+# 用户代理
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# 请求超时时间（秒）
+timeout = 30
+
+# 请求间隔（毫秒）
+delay_ms = 1000
+
+# 最大重试次数
+max_retries = 3
+
+# 是否启用代理
+use_proxy = false
+
+# 代理地址（可选）
+# proxy_url = "http://127.0.0.1:7890"
+

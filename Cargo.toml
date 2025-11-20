@@ -5,6 +5,7 @@ members = [
     "manage",
     "common",
     "orm",
+    "spider",
 ]
 
 [workspace.package]
@@ -70,13 +71,26 @@ fluent = "0.17.0"
 fluent-bundle = "0.16.0"
 unic-langid = "0.9"
 
+# 爬虫相关
+reqwest = { version = "0.12", features = ["json", "cookies", "gzip", "brotli"] }
+scraper = "0.20"
+select = "0.6"
+toml = "0.8"
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
+url = "2.5"
+regex = "1.11"
+futures-util = "0.3"
+headless_chrome = "1.0"
+fantoccini = "0.19"
+thirtyfour = "0.31"
+
 # 内部依赖
 football-common = { path = "./common" }
 football-orm = { path = "./orm" }
 
 # sa-token
-sa-token-core="0.1.3"
-sa-token-macro="0.1.3"
-sa-token-storage-redis = "0.1.3"
-sa-token-plugin-actix-web="0.1.3"
-sa-token-adapter="0.1.3"
+#sa-token-core="0.1.7"
+#sa-token-macro="0.1.7"
+#sa-token-storage-redis = "0.1.7"
+sa-token-plugin-actix-web={version = "0.1.7", features = ["redis"]}
+#sa-token-adapter="0.1.7"

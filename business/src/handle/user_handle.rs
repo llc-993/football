@@ -1,5 +1,5 @@
 // 用户相关业务处理器
-use actix_web::{web, HttpResponse, Responder};
+use actix_web::{web, HttpResponse, Responder, get};
 use football_common::{AppError, AppResult, ApiResponse};
 use football_orm::user::{users::User, user_level_config::UserLevelConfig};
 use rbs::{to_value, value};
@@ -111,6 +111,7 @@ pub async fn login(req: web::Json<LoginRequest>) -> impl Responder {
 
 /// 修改密码
 #[sa_check_login]
+// #[get("/api/user/change-password")]
 pub async fn change_password(req: web::Json<ChangePasswordRequest>,) -> impl Responder {
     let rb = get_db();
     let user_id = match StpUtil::get_login_id_as_long() {

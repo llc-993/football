@@ -56,8 +56,8 @@ fluent-bundle.workspace = true
 unic-langid.workspace = true
 
 # Sa-Token 认证框架
-sa-token-core.workspace = true
-sa-token-macro.workspace = true
-sa-token-storage-redis.workspace = true
+#sa-token-core.workspace = true
+#sa-token-macro.workspace = true
+#sa-token-storage-redis.workspace = true
 sa-token-plugin-actix-web.workspace = true
-sa-token-adapter.workspace = true
+#sa-token-adapter.workspace = true
